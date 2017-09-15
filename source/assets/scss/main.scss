@@ -1,7 +1,34 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+@import 'components/mixin';
+@import 'components/variables';
+
+@include font-face('Aquarelle', '../fonts/UTM Aquarelle', 400, null, ttf);
+@include font-face('Aptima', '../fonts/UTM AptimaBold', 700, null, ttf);
+
+@import 'components/ultilities';
+@import 'components/button';
+
+@import 'sessions/navigation';
+@import 'sessions/page-header';
+@import 'sessions/section-about';
+@import 'sessions/section-feature';
+@import 'sessions/section-advantage';
+@import 'sessions/section-show';
+@import 'sessions/section-benefit';
+@import 'sessions/section-register';
+@import 'sessions/page-footer';
+
 body {
-  color: white;
-  font-size: 24px;
+  color: #212121;
+  font-size: 0.9rem;
   line-height: 1.5;
-  background: coral;
+  font-weight: 300;
+  font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  overflow: hidden;
 }

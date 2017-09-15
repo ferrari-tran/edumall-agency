@@ -1,0 +1,32 @@
+.navbar-nav-top {
+  text-transform: uppercase;
+  .nav-item {
+    padding: 0 0.81rem;
+    > a {
+      color: white;
+      position: relative;
+      @include breakpoint(992, min) {
+        padding: 0 !important;  
+      }
+      @extend .transition;
+      &::before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 4px;
+        bottom: -12px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        background-color: $secondary-color-2;
+        @extend .transition;
+      }
+      &:hover {
+        color: $secondary-color-2;
+        &::before {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

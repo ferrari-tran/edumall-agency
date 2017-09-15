@@ -1,0 +1,23 @@
+.advantage-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
+
+.section-advantage {
+  img[alt=map] {
+    @include breakpoint(991, max) {
+      width: 80%;
+    }
+  }
+  .block-advantage {
+    @include breakpoint(991, max) {
+      margin-bottom: 3rem;
+      .advantage-title {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

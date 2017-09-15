@@ -6,8 +6,10 @@ var gulp        = require('gulp'),
   cleanCSS      = require('gulp-clean-css'),
   plumber       = require('gulp-plumber'),
   cssLint       = require('gulp-csslint'),
-  haml          = require('gulp-haml'),
   ejs           = require('gulp-ejs'),
+  ejsLint       = require('ejs-lint'),
+  ejsmin        = require('gulp-ejsmin'),
+  minifyejs     = require('gulp-minify-ejs'),
   gutil         = require('gulp-util'),
   sassLint      = require('gulp-sass-lint'),
   uglify        = require('gulp-uglify'),
@@ -24,17 +26,16 @@ var gulp        = require('gulp'),
 var BUILD_DIR   = './dist/',
     SOURCE_DIR  = './source/';
 
-// Default compile .haml to .html
-gulp.task('haml', function() {
-  gulp.src(SOURCE_DIR + '*.haml')
-    .pipe(haml())
-    .pipe(gulp.dest(BUILD_DIR))
-    .pipe(reload({stream: true}));
-});
-
 gulp.task('ejs', function() {
   gulp.src(SOURCE_DIR + '*.ejs')
-    .pipe(ejs({},{}, {ext: '.html'}).on('error', gutil.log))
+    .pipe(plumber())
+    .pipe(ejs(
+      {},
+      {}, 
+      { ext: '.html' }
+    ).on('error', gutil.log))
+    .pipe(ejsmin({removeComment: true}))
+    .pipe(minifyejs())
     .pipe(gulp.dest(BUILD_DIR))
     .pipe(reload({stream: true}));
 });
@@ -46,11 +47,14 @@ gulp.task('copy', function() {
     .pipe(gulp.dest(config.build_dir + '/vendor/js'));
   gulp.src(config.vendor_files.css)
     .pipe(gulp.dest(config.build_dir + '/vendor/css'));
+  gulp.src(SOURCE_DIR + 'assets/fonts/**/**')
+    .pipe(gulp.dest(BUILD_DIR + 'fonts'));
 });
 
 // CSS lint
 gulp.task('css-lint', function() {
   gulp.src(SOURCE_DIR + 'assets/css/*.css')
+    .pipe(plumber())
     .pipe(cssLint())
     .pipe(cssLint.formatter('junit-xml'));
 });
@@ -58,9 +62,21 @@ gulp.task('css-lint', function() {
 // Sass lint
 gulp.task('sass-lint', function() {
   gulp.src(SOURCE_DIR + 'assets/scss/*.s+(a|c)ss')
+    .pipe(plumber())
     .pipe(sassLint())
     .pipe(sassLint.format())
     .pipe(sassLint.failOnError());
+});
+
+gulp.task('sass', function() {
+  gulp.src(SOURCE_DIR + 'assets/scss/*.scss')
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(autoprefixer())
+    .pipe(concat('main.min.css'))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(BUILD_DIR + '/css'))
+    .pipe(reload({stream: true}));
 });
 
 // Compile sass, css
@@ -113,7 +129,8 @@ gulp.task('optimize-images', function() {
       imgmin.svgo({plugins: [{removeViewBox: true}]})
     ]))
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest(BUILD_DIR + 'images'));
+    .pipe(gulp.dest(BUILD_DIR + 'images'))
+    .pipe(reload({stream: true}));
 });
 
 // Watching when working
@@ -129,10 +146,10 @@ gulp.task('watch', function () {
     }
   });
 
-  gulp.watch([SOURCE_DIR + '*.haml'], ['haml']);
-  gulp.watch([SOURCE_DIR + '*.ejs'], ['ejs']);
-  gulp.watch([SOURCE_DIR + 'assets/scss/**/*.s+(a|c)ss', SOURCE_DIR + 'assets/css/**/*.css'], ['compile-styles']);
+  gulp.watch([SOURCE_DIR + '**/*.ejs'], ['ejs']);
+  gulp.watch([BUILD_DIR + 'css/*.css', SOURCE_DIR + 'assets/scss/**/*.s+(a|c)ss', SOURCE_DIR + 'assets/css/**/*.css'], ['compile-styles']);
+  // gulp.watch([SOURCE_DIR + 'assets/scss/**/*.scss'], ['sass']);
   gulp.watch([SOURCE_DIR + 'assets/js/**/*.js'], ['compile-scripts']);
 });
 
-gulp.task('default', ['haml', 'ejs', 'copy', 'compile-styles', 'compile-scripts', 'optimize-images', 'watch']);
+gulp.task('default', ['ejs', 'copy', 'compile-styles', 'compile-scripts', 'optimize-images', 'watch']);

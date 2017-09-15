@@ -1,0 +1,52 @@
+.section-register {
+  background: url('../images/bg_register.min.jpg') no-repeat center;
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    background: rgba(255, 255, 255, 0.85);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+
+.form-outline {
+  .form-group {
+    border: solid 1px #787878;
+    padding: 1.5rem 1rem 0.5rem 1rem;
+    position: relative;
+    cursor: text;
+    @extend .transition;
+    label {
+      position: absolute;
+      top: 1rem;
+      z-index: -1;
+      @extend .transition;
+    }
+    &.active {
+      border-color: $secondary-color;
+    }
+  }
+  .form-control {
+    outline: none;
+    box-shadow: none !important;
+    border: none;
+    background: transparent;
+    padding: 0;
+    &:active, &:focus {
+      + label {
+        font-size: 0.5rem;
+        top: 0.5rem;
+      }
+    }
+    + label.active {
+      font-size: 0.5rem;
+      top: 0.5rem;
+    }
+  }
+}

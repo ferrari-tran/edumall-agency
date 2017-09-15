@@ -25,24 +25,36 @@ npm manifest:
     "author": "thuytp",
     "license": "ISC",
     "dependencies": {
+      "animate.css": "^3.5.2",
       "browser-sync": "^2.18.13",
+      "ejs-lint": "^0.3.0",
       "gulp": "^3.9.1",
       "gulp-add-src": "^0.2.0",
       "gulp-autoprefixer": "^4.0.0",
       "gulp-clean-css": "^3.7.0",
       "gulp-concat": "^2.6.1",
       "gulp-csslint": "^1.0.0",
+      "gulp-ejs": "^3.0.1",
+      "gulp-ejsmin": "^0.0.1",
       "gulp-eslint": "^4.0.0",
       "gulp-haml": "^0.2.0",
+      "gulp-html-minifier": "^0.1.8",
       "gulp-imagemin": "^3.3.0",
       "gulp-minify": "^1.0.0",
+      "gulp-minify-ejs": "^1.0.3",
       "gulp-plumber": "^1.1.0",
       "gulp-rename": "^1.2.2",
       "gulp-sass": "^3.1.0",
       "gulp-sass-lint": "^1.3.2",
       "gulp-sourcemaps": "^2.6.0",
       "gulp-uglify": "^3.0.0",
+      "gulp-util": "^3.0.8",
+      "jquery": "^3.2.1",
+      "owl.carousel": "^2.2.0",
+      "popper.js": "^1.12.3",
       "sass": "^1.0.0-beta.2",
+      "syntax-error": "^1.3.0",
+      "t-scroll": "^1.1.7",
       "uglify": "^0.1.5",
       "yargs": "^8.0.2"
     },
@@ -1182,6 +1194,10 @@ Lockfile:
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   
+  ejs@2.5.6:
+    version "2.5.6"
+    resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.5.6.tgz#479636bfa3fe3b1debd52087f0acb204b4f19c88"
+  
   electron-to-chromium@^1.3.18:
     version "1.3.18"
     resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.18.tgz#3dcc99da3e6b665f6abbc71c28ad51a2cd731a9c"
@@ -2269,6 +2285,16 @@ Lockfile:
       decompress "^3.0.0"
       gulp-util "^3.0.1"
       readable-stream "^2.0.2"
+  
+  gulp-ejs@^3.0.1:
+    version "3.0.1"
+    resolved "https://registry.yarnpkg.com/gulp-ejs/-/gulp-ejs-3.0.1.tgz#fd740c02b3861e0653de103e9a2a74e2de634324"
+    dependencies:
+      ejs "2.5.6"
+      gulp-util "3.0.8"
+      object-assign "^4.1.0"
+      safe-buffer "^5.0.1"
+      through2 "2.0.3"
   
   gulp-eslint@^4.0.0:
     version "4.0.0"
@@ -5715,4 +5741,4 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/zlib-browserify/-/zlib-browserify-0.0.1.tgz#4fa6a45d00dbc15f318a4afa1d9afc0258e176cc"
 
 Trace: 
-  Error: EACCES: permission denied, mkdir '/Users/cryrose/Library/Caches/Yarn/v1/npm-sass-1.0.0-beta.2-910071f16ddcde0b946392aadfa12d347128eb5d'
+  Error: EACCES: permission denied, mkdir '/Users/cryrose/Library/Caches/Yarn/v1/npm-browser-sync-2.18.13-c28dc3eb3be67c97a907082b772a37f915c14d7d'

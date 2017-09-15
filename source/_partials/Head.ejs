@@ -1,0 +1,36 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Agency Edumall</title>
+<link href="images/favicon_edumall.min.png" rel="short icon">
+<link rel="stylesheet" href="vendor/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/main.min.css?v=<%= new Date().getTime() %>">
+
+
+<script src="//www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+<script src="//www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+<script src="//www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+<script src="//www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+<script>
+  var config = {
+    apiKey: "AIzaSyA5YlZmj11xJQXV_poJVCUxjLmcmKR8x7c",
+    authDomain: "edumall-agency-2017.firebaseapp.com",
+    databaseURL: "https://edumall-agency-2017.firebaseio.com",
+    projectId: "edumall-agency-2017",
+    storageBucket: "edumall-agency-2017.appspot.com",
+    messagingSenderId: "674516914358"
+  };
+  firebase.initializeApp(config);
+
+  window.firebaseDB = firebase.database();
+  window.firebaseAuth = firebase.auth;
+  window.u_id = null;
+
+  (function(window, document){
+    window.firebaseAuth()
+        .signInAnonymously()
+        .then( function(user) {
+          window.u_id = user.uid;
+        });
+  })(window, document);
+</script>

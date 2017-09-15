@@ -1,1 +1,2 @@
-# moneyloverlp
+# Tutorial
+- Run: yarn

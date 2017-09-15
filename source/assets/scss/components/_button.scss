@@ -1,0 +1,23 @@
+.btn {
+  border-radius: 0;
+  text-transform: uppercase;
+  padding: 0.8rem 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn-outline-light{
+  border-width: 3px;
+  &:hover {
+    color: $primary-color;
+  }
+}
+.btn-outline-secondary {
+  border-color: $secondary-color !important;
+  color: $secondary-color;
+  &:hover {
+    background-color: $secondary-color;
+  }
+  &:active, &:visited {
+    background-color: rgba($secondary-color, 0.8);
+  }
+}

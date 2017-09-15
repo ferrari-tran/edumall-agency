@@ -1,0 +1,46 @@
+.section-show {
+  background: url('../images/bg_show.min.jpg') no-repeat center;
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    opacity: 0.85;
+    z-index: -1;
+  }
+  .show-course {
+    max-width: 100%;
+    margin-bottom: -127px;
+    img {
+      max-width: 100%;
+      @extend .transition;
+    }
+    @include breakpoint(1199, max) {
+      margin-bottom: -94px;
+    }
+    @include breakpoint(991, max) {
+      margin-bottom: -130px;
+    }
+    @include breakpoint(767, max) {
+      margin-bottom: -94px;
+    }
+    @include breakpoint(575, max) {
+      img {
+        max-width: 320px;
+      }
+      margin-bottom: -76px;
+    }
+    @include breakpoint(339, max) {
+      img {
+        max-width: 290px;
+      }
+      margin-bottom: -70px;
+    }
+  }
+}

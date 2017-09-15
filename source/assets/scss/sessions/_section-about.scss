@@ -1,0 +1,10 @@
+.section-about {
+  .media-list {
+    margin-top: 3rem;
+    .media-item {
+      @include breakpoint(767, max) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
